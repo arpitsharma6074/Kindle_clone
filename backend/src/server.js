@@ -1,11 +1,15 @@
-import express from 'express';
+import express, { json } from 'express';
 import dotenv from 'dotenv';
-import bookRoutes from './routes/bookRoutes.js';
 import router from './routes/bookRoutes.js';
+import { connectDB } from './config/mongo_db.js';
+
 dotenv.config();
 const app = express();
 // const PORT = process.env.PORT || 3000;
 const PORT = 8000;
+
+connectDB();
+app.use(express.json());
 
 app.get('/', (req, res) => {
   res.status(200).send('Hello, Kindle Clone!');
