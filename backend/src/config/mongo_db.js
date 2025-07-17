@@ -2,7 +2,8 @@ import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 
 dotenv.config();
-const MONGO_URI = "mongodb+srv://root:root123@cluster0.1nx1i.mongodb.net/Kindle?retryWrites=true&w=majority&appName=Cluster0";
+const MONGO_URI = process.env.MONGO_URI || 'mongodb://localhost:27017/Kindle';
+console.log('Mongo URI:', MONGO_URI);
 export async function connectDB() {
   try {
     await mongoose.connect(MONGO_URI);
